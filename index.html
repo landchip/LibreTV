@@ -49,7 +49,7 @@
     <script>
         // 请确保在部署时通过环境变量替换此处的 __PASSWORD__ 字符串
         const SITE_PASSWORD = '__PASSWORD__';
-        if (SITE_PASSWORD && SITE_PASSWORD.trim() && !localStorage.getItem('siteAuth')) {
+        if (SITE_PASSWORD && SITE_PASSWORD.trim() && SITE_PASSWORD !== '__PASSWORD__' && !localStorage.getItem('siteAuth')) {
             document.addEventListener('DOMContentLoaded', () => {
                 const modal = document.getElementById('passwordModal');
                 modal.style.display = 'flex';
