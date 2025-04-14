@@ -47,9 +47,19 @@
     </div>
     <!-- 新增：密码验证脚本 -->
     <script>
-        // 请确保在部署时通过环境变量替换此处的 __PASSWORD__ 字符串
-        const SITE_PASSWORD = '__PASSWORD__';
-        if (SITE_PASSWORD && SITE_PASSWORD.trim() && SITE_PASSWORD !== '__PASSWORD__' && !localStorage.getItem('siteAuth')) {
+        // 检查是否有环境变量PASSWORD
+        // 这段代码会在构建时被正确替换
+        const SITE_PASSWORD = typeof process !== 'undefined' && process.env && process.env.PASSWORD 
+            ? process.env.PASSWORD 
+            : '__PASSWORD__';
+            
+        // 只有当PASSWORD环境变量存在、不为空且不是占位符时才验证密码
+        const needsPassword = SITE_PASSWORD && 
+                              SITE_PASSWORD.trim() && 
+                              SITE_PASSWORD !== '__PASSWORD__' && 
+                              !localStorage.getItem('siteAuth');
+                              
+        if (needsPassword) {
             document.addEventListener('DOMContentLoaded', () => {
                 const modal = document.getElementById('passwordModal');
                 modal.style.display = 'flex';
