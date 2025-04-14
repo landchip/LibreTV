@@ -126,6 +126,8 @@ services:
 - `PLAYER_CONFIG`: 调整播放器参数，如自动播放、广告过滤等
 - `HIDE_BUILTIN_ADULT_APIS`: 用于控制是否隐藏内置的黄色采集站API，默认值为`true`。设置为`true`时，内置的某些敏感API将不会在设置面板中显示，可根据实际需要修改配置。
 
+- `PASSWORD`: 在部署平台（如Vercel或Cloudflare Pages）中设置环境变量`PASSWORD`。当该变量存在且不为空时，用户首次访问网站需要输入密码，输入成功后后续访问无需再验证；若留空或未设置，则不启用密码验证。
+
 注意：若使用docker部署，可进入容器，在`/usr/share/nginx/html/js`内修改相关配置
 
 ## Star History
